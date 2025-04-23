@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Slider,
-  Typography,
   RadioGroup,
   FormControlLabel,
   Radio,
@@ -70,7 +69,7 @@ const DiceGame: React.FC = () => {
 
 
       <Box className={styles.resultBox}>
-        <Typography variant="h1">{result ?? '--'}</Typography>
+        <h1> {result ?? '--'}</h1>
       </Box>
 
       <RadioGroup
