@@ -1,14 +1,12 @@
 'use client';
-import {Container} from "@mui/material"
 import DiceGame from "@/components/DiceGame/DiceGame"
-
+import styles from './page.module.scss'
 
 export default function Home() {
   return (
-    <Container>
-
+    <div className={styles.container}>
       <DiceGame />
-    </Container>
+    </div>
 
   )
 }

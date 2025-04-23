@@ -1,0 +1,32 @@
+@use 'src/common/styles/mixins';
+
+.diceGame {
+    //max-width: 600px;
+    @include mixins.flex($direction: column, $alignItems: center);
+    padding-top: 16px;
+
+    .alert {
+        width: 600px;
+    }
+
+    .resultBox, .button {
+        width: 320px;
+    }
+
+    .resultBox {
+        height: 200px;
+        display: flex;
+        @include mixins.flex($alignItems: center, $justifyContent: center);
+        background-color: #0000000A;
+        margin-top: 21px;
+    }
+
+    .slider {
+        color:  #9C27B0;
+    }
+
+    .button {
+        background-color: #9C27B0;
+    }
+}
+
