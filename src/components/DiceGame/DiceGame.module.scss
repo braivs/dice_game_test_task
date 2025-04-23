@@ -1,9 +1,9 @@
 @use 'src/common/styles/mixins';
 
 .diceGame {
-    //max-width: 600px;
     @include mixins.flex($direction: column, $alignItems: center);
     padding-top: 16px;
+    background-color: white;
 
     .alert, .historyTable {
         width: 600px;

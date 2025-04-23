@@ -63,9 +63,9 @@ const DiceGame: React.FC = () => {
   return (
     <Box className={styles.diceGame}>
       <Box>
-        {status === 'win' && <Alert severity="success" className={styles.alert}>You won</Alert>}
+        {status === 'win' && <Alert severity="success" variant={'filled'} className={styles.alert}>You won</Alert>}
         {status === 'lose' &&
-            <Alert severity="error" className={styles.alert}>You lost<br/>{guessType === 'under' ? 'Number was higher' : 'Number was lower'}
+            <Alert severity="error" className={styles.alert} variant={'filled'}>You lost<br/>{guessType === 'under' ? 'Number was higher' : 'Number was lower'}
             </Alert>}
       </Box>
 
