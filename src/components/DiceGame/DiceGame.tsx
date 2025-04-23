@@ -23,14 +23,15 @@ type GameResult = {
 }
 
 const DiceGame: React.FC = () => {
-  const [threshold, setThreshold] = useState(50)
-  const [guessType, setGuessType] = useState<'under' | 'over'>('under')
-  const [result, setResult] = useState<number | null>(null)
-  const [history, setHistory] = useState<GameResult[]>([])
-  const [status, setStatus] = useState<'win' | 'lose' | null>(null)
+  const [threshold, setThreshold] = useState(50) // User's threshold value to compare against
+  const [guessType, setGuessType] = useState<'under' | 'over'>('under') // User's prediction: "under" or "over"
+  const [result, setResult] = useState<number | null>(null) // Result of the dice roll
+  const [history, setHistory] = useState<GameResult[]>([]) // History of the last 10 games
+  const [status, setStatus] = useState<'win' | 'lose' | null>(null) // Status of the current round
 
   const handlePlay = () => {
     const roll = Math.floor(Math.random() * 100) + 1
+    // Determine if user wins based on guess type and threshold
     const win = guessType === 'under' ? roll < threshold : roll > threshold
 
     const now = new Date().toLocaleTimeString()
@@ -45,7 +46,7 @@ const DiceGame: React.FC = () => {
 
     setResult(roll)
     setStatus(win ? 'win' : 'lose')
-    setHistory((prev) => [newResult, ...prev.slice(0, 9)])
+    setHistory((prev) => [newResult, ...prev.slice(0, 9)])// keep max 10 entries
   }
 
   const marks = [
@@ -60,6 +61,7 @@ const DiceGame: React.FC = () => {
   return (
     <Box className={styles.diceGame}>
       <Box>
+        {/* Feedback alerts for win/loss */}
         {status === 'win' && <Alert severity="success" variant={'filled'} className={styles.alert}>You won</Alert>}
         {status === 'lose' &&
             <Alert severity="error" className={styles.alert} variant={'filled'}>You
@@ -72,6 +74,7 @@ const DiceGame: React.FC = () => {
         <h1> {result ?? '--'}</h1>
       </Box>
 
+      {/* User chooses prediction: under or over */}
       <RadioGroup
         row
         value={guessType}
