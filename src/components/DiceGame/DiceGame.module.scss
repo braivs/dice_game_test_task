@@ -5,7 +5,7 @@
     @include mixins.flex($direction: column, $alignItems: center);
     padding-top: 16px;
 
-    .alert {
+    .alert, .historyTable {
         width: 600px;
     }
 
@@ -19,14 +19,36 @@
         @include mixins.flex($alignItems: center, $justifyContent: center);
         background-color: #0000000A;
         margin-top: 21px;
+        font-size: 96px;
+        line-height: 117%;
+        letter-spacing: -1.5px;
     }
 
     .slider {
-        color:  #9C27B0;
+        margin-top: 32px;
+        color: #9C27B0;
+    }
+
+    .historyTable, .button {
+        margin-top: 16px;
     }
 
     .button {
         background-color: #9C27B0;
+    }
+
+    .historyTable {
+        .tableHead {
+            font-weight: 600;
+        }
+
+        .win {
+            color: #4CAF50;
+        }
+
+        .lose {
+           color: #C62828;
+        }
     }
 }
 

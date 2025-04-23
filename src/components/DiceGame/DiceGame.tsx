@@ -1,12 +1,26 @@
 import React, {useState} from 'react'
-import {Box, Button, Slider, Typography, RadioGroup, FormControlLabel, Radio, Alert} from '@mui/material'
+import {
+  Box,
+  Button,
+  Slider,
+  Typography,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Alert,
+  Table,
+  TableHead,
+  TableRow,
+  TableBody,
+  TableCell
+} from '@mui/material'
 import styles from './DiceGame.module.scss'
 
-interface GameResult {
-  time: string;
-  guess: string;
-  result: number;
-  win: boolean;
+type GameResult = {
+  time: string
+  guess: string
+  result: number
+  win: boolean
 }
 
 const DiceGame: React.FC = () => {
@@ -35,6 +49,17 @@ const DiceGame: React.FC = () => {
     setHistory((prev) => [newResult, ...prev.slice(0, 9)])
   }
 
+  const marks = [
+    {
+      value: 0,
+      label: '0',
+    },
+    {
+      value: 100,
+      label: '100',
+    },
+  ];
+
   return (
     <Box className={styles.diceGame}>
       <Box>
@@ -54,6 +79,7 @@ const DiceGame: React.FC = () => {
           row
           value={guessType}
           onChange={(e) => setGuessType(e.target.value as 'under' | 'over')}
+          className={styles.radioGroup}
         >
           <FormControlLabel value="under" control={<Radio/>} label="Under"/>
           <FormControlLabel value="over" control={<Radio/>} label="Over"/>
@@ -61,26 +87,33 @@ const DiceGame: React.FC = () => {
         <Slider
           value={threshold}
           onChange={(_, newValue) => setThreshold(newValue as number)}
-          min={1}
-          max={99}
+          min={0}
+          max={100}
           valueLabelDisplay="auto"
           className={styles.slider}
+          marks={marks}
         />
         <Button variant="contained" fullWidth onClick={handlePlay} className={styles.button}>PLAY</Button>
       </Box>
 
-      <Box sx={{mt: 4}}>
-        <Typography variant="h6">Game History</Typography>
-        <Box component="ul" sx={{pl: 2}}>
+     <Table className={styles.historyTable}>
+        <TableHead>
+          <TableRow>
+            <TableCell className={styles.tableHead}>Time</TableCell>
+            <TableCell className={styles.tableHead}>Guess</TableCell>
+            <TableCell className={styles.tableHead}>Result</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {history.map((entry, idx) => (
-            <li key={idx}>
-              <Typography variant="body2">
-                {entry.time} — {entry.guess} — {entry.result} — {entry.win ? '✅ Win' : '❌ Loss'}
-              </Typography>
-            </li>
+            <TableRow key={idx}>
+              <TableCell>{entry.time}</TableCell>
+              <TableCell>{entry.guess}</TableCell>
+              <TableCell className={entry.win ? styles.win : styles.lose}>{entry.result}</TableCell>
+            </TableRow>
           ))}
-        </Box>
-      </Box>
+        </TableBody>
+     </Table>
     </Box>
   )
 }
