@@ -9,7 +9,7 @@
         width: 600px;
     }
 
-    .resultBox, .button {
+    .resultBox, .button, .slider {
         width: 320px;
     }
 
@@ -35,6 +35,10 @@
 
     .button {
         background-color: #9C27B0;
+    }
+
+    .radioGroup :global(.MuiRadio-root) {
+        color: #9C27B0; 
     }
 
     .historyTable {

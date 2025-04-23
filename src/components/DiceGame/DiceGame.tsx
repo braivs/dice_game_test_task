@@ -58,14 +58,15 @@ const DiceGame: React.FC = () => {
       value: 100,
       label: '100',
     },
-  ];
+  ]
 
   return (
     <Box className={styles.diceGame}>
       <Box>
         {status === 'win' && <Alert severity="success" variant={'filled'} className={styles.alert}>You won</Alert>}
         {status === 'lose' &&
-            <Alert severity="error" className={styles.alert} variant={'filled'}>You lost<br/>{guessType === 'under' ? 'Number was higher' : 'Number was lower'}
+            <Alert severity="error" className={styles.alert} variant={'filled'}>You
+                lost<br/>{guessType === 'under' ? 'Number was higher' : 'Number was lower'}
             </Alert>}
       </Box>
 
@@ -74,29 +75,27 @@ const DiceGame: React.FC = () => {
         <Typography variant="h1">{result ?? '--'}</Typography>
       </Box>
 
-      <Box sx={{mt: 4}}>
-        <RadioGroup
-          row
-          value={guessType}
-          onChange={(e) => setGuessType(e.target.value as 'under' | 'over')}
-          className={styles.radioGroup}
-        >
-          <FormControlLabel value="under" control={<Radio/>} label="Under"/>
-          <FormControlLabel value="over" control={<Radio/>} label="Over"/>
-        </RadioGroup>
-        <Slider
-          value={threshold}
-          onChange={(_, newValue) => setThreshold(newValue as number)}
-          min={0}
-          max={100}
-          valueLabelDisplay="auto"
-          className={styles.slider}
-          marks={marks}
-        />
-        <Button variant="contained" fullWidth onClick={handlePlay} className={styles.button}>PLAY</Button>
-      </Box>
+      <RadioGroup
+        row
+        value={guessType}
+        onChange={(e) => setGuessType(e.target.value as 'under' | 'over')}
+        className={styles.radioGroup}
+      >
+        <FormControlLabel value="under" control={<Radio/>} label="Under" labelPlacement={'start'}/>
+        <FormControlLabel value="over" control={<Radio/>} label="Over" labelPlacement={'start'}/>
+      </RadioGroup>
+      <Slider
+        value={threshold}
+        onChange={(_, newValue) => setThreshold(newValue as number)}
+        min={0}
+        max={100}
+        valueLabelDisplay="auto"
+        className={styles.slider}
+        marks={marks}
+      />
+      <Button variant="contained" fullWidth onClick={handlePlay} className={styles.button}>PLAY</Button>
 
-     <Table className={styles.historyTable}>
+      <Table className={styles.historyTable}>
         <TableHead>
           <TableRow>
             <TableCell className={styles.tableHead}>Time</TableCell>
@@ -113,7 +112,7 @@ const DiceGame: React.FC = () => {
             </TableRow>
           ))}
         </TableBody>
-     </Table>
+      </Table>
     </Box>
   )
 }
