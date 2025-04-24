@@ -97,6 +97,11 @@ const DiceGame: React.FC = () => {
         valueLabelDisplay="auto"
         className={styles.slider}
         marks={marks}
+        sx={{
+          '& .MuiSlider-markLabel': {
+            color: 'black',
+          }, /* made last mark of slider black */
+        }}
       />
       <Button variant="contained" fullWidth onClick={handlePlay} className={styles.button}>PLAY</Button>
 
