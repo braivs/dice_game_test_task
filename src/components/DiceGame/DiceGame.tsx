@@ -34,7 +34,12 @@ const DiceGame: React.FC = () => {
     // Determine if user wins based on guess type and threshold
     const win = guessType === 'under' ? roll < threshold : roll > threshold
 
-    const now = new Date().toLocaleTimeString()
+    const now = new Date().toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false, // for 24-hour format
+    });
     const guessText = `${guessType === 'under' ? 'Under' : 'Over'} ${threshold}`
 
     const newResult: GameResult = {
